@@ -88,8 +88,5 @@ def aboutPage():
 
     return redirect(render_template("ibase.html", title=title, paragraph=paragraph, pageType=pageType))
 
-
-
-
 if __name__== "__main__":
     app.run()
