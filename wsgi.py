@@ -1,4 +1,4 @@
-from webapp import app
+from venv.webapp import app
 
 if __name__ == "__main__":
     app.run()
