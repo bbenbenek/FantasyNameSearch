@@ -54,10 +54,10 @@ def index():
         search_form.search_name.data = "" # Clear the form field
         print("Running search...", search_name)
 
-        messages = generate(search_name)
+        #messages = generate(search_name)
 
     #return render_template('index.html', form=search_form, message=message)
-    return Response(stream_with_context(stream_template('index.html', form=search_form, messages=messages))) # Stream results instead of pre-loading
+    return Response(stream_with_context(stream_template('index.html', form=search_form, messages=generate(search_name)))) # Stream results instead of pre-loading
 
 """
 @app.route('/favicon.ico')
