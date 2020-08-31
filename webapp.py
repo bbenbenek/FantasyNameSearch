@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, Response, stream_with_context
+from flask import Flask, redirect, render_template, request, Response, stream_with_context, send_from_directory
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
@@ -58,11 +58,16 @@ def index():
     #return render_template('index.html', form=search_form, message=message)
     return Response(stream_with_context(stream_template('index.html', form=search_form, messages=messages))) # Stream results instead of pre-loading
 
-@app.route('/leage_search')
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+@app.route('/league_search')
 def leaguesearchPage():
 
     title = "League Search"
-    paragraph = ["blah blah blah memememememmeme blah blah memememe"]
+    paragraph = ["Page under construction"]
 
     pageType = 'about'
 
@@ -72,7 +77,7 @@ def leaguesearchPage():
 def topnamesPage():
 
     title = "Top Names"
-    paragraph = ["blah blah blah memememememmeme blah blah memememe"]
+    paragraph = ["Page under construction"]
 
     pageType = 'about'
 
@@ -82,11 +87,11 @@ def topnamesPage():
 def aboutPage():
 
     title = "About this site"
-    paragraph = ["blah blah blah memememememmeme blah blah memememe"]
+    paragraph = ["Page under construction"]
 
     pageType = 'about'
 
-    return redirect(render_template("ibase.html", title=title, paragraph=paragraph, pageType=pageType))
+    return render_template("base.html", title=title, paragraph=paragraph, pageType=pageType)
 
 if __name__== "__main__":
     app.run()
