@@ -24,7 +24,7 @@ Bootstrap(app)
 class SearchNameForm(FlaskForm):
     search_name = StringField('Enter team name search term',
                        validators=[InputRequired(message='Search term required to search!'),
-                                   Regexp('^[a-zA-Z]+$', message='Invalid character, only letters and numbers are allowed'),
+                                   Regexp('^[a-zA-Z ]+$', message='Invalid character, only letters and numbers are allowed'),
                                    Length(min=2, max=16, message='Please enter a search term with between 2-16 characters in length')
                                    ])
     submit = SubmitField('Search')
