@@ -1,0 +1,94 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block styles %}
+{{ super() }}
+	<style>
+		body { background: #3BC4B4; }
+	</style>
+<link rel="stylesheet"
+    href="{{url_for('static', filename='/CSS/main.css')}}">
+{% endblock %}
+
+
+{% block title %}
+Fantasy Name Search
+{% endblock %}
+
+{% block navbar %}
+<div class="topnav">
+  <a class="active" href="/">Team Search</a>
+  <a href="/league_search">League Search</a>
+  <a href="/top_names">Top Names</a>
+  <a href="/about">About</a>
+</div>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+  <div class="row py-5">
+    <div class="mx-lg-auto mx-md-auto mx-xs-auto mx-sm-auto"><!---col-md-10 col-lg-8--->
+
+        <h1 class="pt-5 pb-2 font-size: 4em"><center>Fantasy Football Team Name Search</center></h1>
+
+        <h3 class="lead"><center>Search through 500,000+ actual fantasy football team names to find your next team name!</center><br><br><h3p>
+    </div>
+  </div>
+
+
+  <div class="row mb-5">
+    <div class="col-lg-8 mx-auto">
+      <h5 class="font-weight-light mb-4 font-italic text-white text-center">Custom rounded search bars with input group</h5>
+      <div class="bg-white p-5 rounded shadow">
+
+        <!-- Custom rounded search bars with input group -->
+        <form action="/" method="post">
+          <div class="bg-light rounded rounded-pill shadow-sm">
+            <div class="input-group">
+            <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                <div class="input-group-append">
+                  <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-auto mx-auto">
+      <h5 class="font-weight-light mb-4 font-italic text-white text-center">Custom rounded search bars with input group</h5>
+      <div class="bg-white p-5 rounded shadow">
+
+        <!-- Original search -->
+        <form action="/search/results" method="post" class="search-wrapper cf">
+          <div class="input-group">
+            <input type="text" class="form-control input-lg" name="input" placeholder="Enter fantasy team search terms..." autofocus>
+            <div class="input-group-btn">
+              <button class="btn btn-primary btn-lg" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+<footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+  <div class="container text-center">
+    <small>Copyright &copy; Your Website</small>
+  </div>
+</footer>
+
+
+</div>
+{% endblock %}
