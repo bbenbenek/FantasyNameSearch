@@ -10,7 +10,7 @@ from fuzzywuzzy import process
 from wtforms import StringField, SubmitField
 from wtforms.validators import InputRequired, Regexp, Length
 
-app = Flask(__name__)#, static_folder='../templates/')
+app = Flask(__name__)
 
 # Flask-WTF requires an encryption key - the string can be anything
 app.config['SECRET_KEY'] = 'b8EL!Dpw?@zW3U5zebye;e?(Mwn^Jn'
@@ -42,12 +42,12 @@ def generate(search_name):
         yield (name[0].encode('utf-16', 'surrogatepass').decode('utf-16'), index % 3)
         index += 1
 
-@app.route('/')
+@app.route('/test')
 def testPage():
 
     return render_template("test.html")
 
-@app.route('/ref')
+@app.route('/')
 def home():
     return render_template('search.html')
 
@@ -59,7 +59,7 @@ def search_results():
     messages = ""
     messages = generate(search_name)
 
-    return Response(stream_with_context(stream_template('results-test.html', messages=messages))) # Stream results instead of pre-loading
+    return Response(stream_with_context(stream_template('results.html', messages=messages))) # Stream results instead of pre-loading
 
 
 

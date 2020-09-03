@@ -1,4 +1,29 @@
 html {
+    height: 100%;
+    font-size: 1rem;
+}
+
+
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 1.2rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 1.4rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 1.6rem;
+  }
+}
+/*
+
+html {
     font-size: 100%;
     box-sizing: border-box;
 }
@@ -17,33 +42,25 @@ html {
 
 .cf{
     zoom:1;
+      background: #3BC4B4;
+        font-family: Arial, Helvetica, sans-serif;
+        background: -webkit-gradient(linear, left top, left bottom, #3BC4B4, #60cfc2) fixed;
+  margin:0;
 }
+*/
+
 
 body {
-
-  font-family: Arial, Helvetica, sans-serif;
+    background-color: #3BC4B4 !important;
 }
 
-@media only screen and (max-width: 950px) {
-   .cf7_custom_style_1 {
-      padding-left: 10%;
-      padding-right: 10%;
-   }
-}
 
-@media only screen and (max-width: 600px) {
-   .cf7_custom_style_1 {
-      padding-left: 0;
-      padding-right: 0;
-   }
-}
-
-.topnav {
+#topnavbar .topnav {
   overflow: hidden;
   background-color: #333;
 }
 
-.topnav a {
+#topnavbar .topnav a {
   float: left;
   color: #f2f2f2;
   text-align: center;
@@ -52,130 +69,27 @@ body {
   font-size: 17px;
 }
 
-.topnav a:hover {
+#topnavbar .topnav a:hover {
   background-color: #ddd;
   color: black;
 }
 
-.topnav a.active {
+#topnavbar .topnav a.active {
   background-color: #703BC4;
   color: white;
 }
 
-/* Form wrapper styling */
-.search-wrapper {
-width: 520px;
-margin: 45px auto 50px auto;
-box-shadow: 0 1px 1px rgba(0, 0, 0, .4) inset, 0 1px 0 rgba(255, 255, 255, .2);
+#search_results_pane {
+    background-color: #d8d8d8;
 }
 
-/* Form text input */
 
-.search-wrapper input {
-width: 438px;
-height: 40px;
-padding: 10px 5px;
-float: left;
-font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
-border: 0;
-background: #EEE;
-border-radius: 3px 0 0 3px;
-}
 
-.search-wrapper input:focus {
-    outline: 0;
-    background: #fff;
-    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
-}
 
-.search-wrapper input::-webkit-input-placeholder {
-   color: #999;
-   font-weight: normal;
-   font-style: italic;
-}
 
-.search-wrapper input:-moz-placeholder {
-    color: #999;
-    font-weight: normal;
-    font-style: italic;
-}
 
-.search-wrapper input:-ms-input-placeholder {
-    color: #999;
-    font-weight: normal;
-    font-style: italic;
-}
-
-/* Form submit button */
-.search-wrapper button {
-overflow: visible;
-position: relative;
-float: right;
-border: 0;
-padding: 0;
-cursor: pointer;
-height: 40px;
-width: 72px;
-font: bold 15px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
-color: white;
-text-transform: uppercase;
-background: #D83C3C;
-border-radius: 0 3px 3px 0;
-text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
-}
-
-.search-wrapper button:hover{
-    background: #e54040;
-}
-
-.search-wrapper button:active,
-.search-wrapper button:focus{
-    background: #c42f2f;
-    outline: 0;
-}
-
-.search-wrapper button:before { /* left arrow */
-    content: '';
-    position: absolute;
-    border-width: 8px 8px 8px 0;
-    border-style: solid solid solid none;
-    border-color: transparent #d83c3c transparent;
-    top: 12px;
-    left: -6px;
-}
-
-.search-wrapper button:hover:before{
-    border-right-color: #e54040;
-}
-
-.search-wrapper button:focus:before,
-.search-wrapper button:active:before{
-        border-right-color: #c42f2f;
-}
-
-.search-wrapper button::-moz-focus-inner { /* remove extra button spacing for Mozilla Firefox */
-    border: 0;
-    padding: 0;
-}
-
-/* Sticky Footer Classes
-
-html,
-body {
-  height: 100%;
-}
-
-#page-content {
-  flex: 1 0 auto;
-}
-*/
-
-#sticky-footer {
-  flex-shrink: none;
-}
 
 /*
-*
 * ==========================================
 * CUSTOM UTIL CLASSES
 * ==========================================
@@ -201,15 +115,20 @@ body {
 *
 */
 
-body {
-  background: #ffd89b;
-  background: -webkit-linear-gradient(to right, #ffd89b, #19547b);
-  background: linear-gradient(to right, #ffd89b, #19547b);
-  min-height: 100vh;
-}
-
 .form-control::placeholder {
   font-size: 0.95rem;
   color: #aaa;
   font-style: italic;
 }
+
+/* Sticky Footer Classes */
+
+.footer {
+  flex-shrink: 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+

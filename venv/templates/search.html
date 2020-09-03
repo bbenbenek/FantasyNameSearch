@@ -1,70 +1,67 @@
-{% extends 'bootstrap/base.html' %}
-{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <title>Fantasy Name Search</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/bootstrap-4.2.1-dist/css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/font-awesome-4.7.0/css/font-awesome.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/main.css')}}" />
 
-{% block styles %}
-{{ super() }}
-	<style>
-		body { background: #3BC4B4; }
-	</style>
-<link rel="stylesheet"
-    href="{{url_for('static', filename='/CSS/main.css')}}">
-{% endblock %}
+    <style>
+      body {
+        background: -webkit-linear-gradient(to right, #3BC4B4, #ace6df) !important;
+        background: linear-gradient(to right, #3BC4B4, #ace6df) !important;
+      }
+    </style>
+  </head>
+  <body>
 
+  <!-- background-color: #3BC4B4; !important; -->
 
-{% block title %}
-Fantasy Name Search
-{% endblock %}
-
-{% block navbar %}
-<div class="topnav">
-  <a class="active" href="/">Team Search</a>
-  <a href="/league_search">League Search</a>
-  <a href="/top_names">Top Names</a>
-  <a href="/about">About</a>
-</div>
-{% endblock %}
-
-{% block content %}
-
-
-<div class="container">
-  <div class="row py-5">
-    <div class="mx-lg-auto mx-md-auto mx-xs-auto mx-sm-auto"><!---col-md-10 col-lg-8--->
-
-        <h1 class="pt-5 pb-2 font-size: 4em"><center>Fantasy Football Team Name Search</center></h1>
-
-        <h3 class="lead"><center>Search through 500,000+ actual fantasy football team names to find your next team name!</center><br><br><h3p>
+    <div id="#topnavbar" class="topnav">
+      <a class="active" href="/">Team Search</a>
+      <a href="/league_search">League Search</a>
+      <a href="/top_names">Top Names</a>
+      <a href="/about">About</a>
     </div>
-  </div>
 
 
-  <div class="row mb-5">
-    <div class="col-lg-8 mx-auto">
-      <h5 class="font-weight-light mb-4 font-italic text-white text-center">Custom rounded search bars with input group</h5>
-      <div class="bg-white p-5 rounded shadow">
 
-        <!-- Custom rounded search bars with input group -->
-        <form action="/" method="post">
-          <div class="bg-light rounded rounded-pill shadow-sm">
-            <div class="input-group">
-            <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
-                <div class="input-group-append">
-                  <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
-                </div>
-            </div>
-          </div>
-        </form>
+    <div class="container">
+      <div class="row py-1">
+        <div class="mx-lg-auto mx-md-auto mx-xs-auto mx-sm-auto"><!---col-md-10 col-lg-8--->
+
+            <h1 class="pt-5 pb-2 font-size: 4em"><center>Fantasy Football Team Name Search</center></h1>
+
+            <h3 class="lead"><center>Search through 500,000+ actual fantasy football team names to find your next team name!</center><br><br></h3>
+        </div>
       </div>
-    </div>
-  </div>
 
+
+      <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <!-- Custom rounded search bars with input group -->
+            <form action="/search/results" method="post">
+              <div class="p-2 bg-light rounded rounded-pill shadow-sm mb-4">
+                <div class="input-group">
+                  <input type="text" name="input" placeholder="Enter fantasy team search terms..." aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                  <div class="input-group-append">
+                    <button id="button-addon1" type="submit" class="btn btn-link text-dark"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+            </form>
+        </div>
+      </div>
+<!--
   <div class="row mb-5">
     <div class="col-auto mx-auto">
       <h5 class="font-weight-light mb-4 font-italic text-white text-center">Custom rounded search bars with input group</h5>
       <div class="bg-white p-5 rounded shadow">
 
-        <!-- Original search -->
+
         <form action="/search/results" method="post" class="search-wrapper cf">
           <div class="input-group">
             <input type="text" class="form-control input-lg" name="input" placeholder="Enter fantasy team search terms..." autofocus>
@@ -79,16 +76,15 @@ Fantasy Name Search
       </div>
     </div>
   </div>
+-->
 
+      </div>
 
+    <div class="footer py-2 bg-dark text-white-50">
+      <a href="https://www.yahoo.com/?ilc=401" target="_blank">
+        <img src="{{url_for('static', filename='images/yahoo_dark_logo.png')}}" align="right" width="134" height="29"/>
+      </a>
+    </div>
 
-
-<footer id="sticky-footer" class="py-4 bg-dark text-white-50">
-  <div class="container text-center">
-    <small>Copyright &copy; Your Website</small>
-  </div>
-</footer>
-
-
-</div>
-{% endblock %}
+  </body>
+</html>
