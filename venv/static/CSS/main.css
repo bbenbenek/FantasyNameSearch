@@ -55,38 +55,37 @@ body {
 }
 
 
-#topnavbar .topnav {
+#topnavbar {
   overflow: hidden;
-  background-color: #333;
+  /*background-color: #333;*/
 }
 
-#topnavbar .topnav a {
-  float: left;
-  color: #f2f2f2;
+#topnavbar a {
+    /*
+    float: left;
+    padding: 14px 16px;
+    color: #f2f2f2;
+      font-size: 17px;
+    */
   text-align: center;
-  padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+
 }
 
-#topnavbar .topnav a:hover {
+
+#topnavbar li:hover {
   background-color: #ddd;
-  color: black;
+  text-color: black;
 }
 
-#topnavbar .topnav a.active {
+#topnavbar li.active {
   background-color: #703BC4;
   color: white;
 }
 
 #search_results_pane {
-    background-color: #d8d8d8;
+    background-color: #ddd;
 }
-
-
-
-
-
 
 
 /*
@@ -132,3 +131,65 @@ body {
   text-align: center;
 }
 
+.bmc-button img {
+    height: 34px !important;
+    width: 35px !important;
+    margin-bottom: 1px !important;
+    box-shadow: none !important;
+    border: none !important;
+    vertical-align: middle !important;
+    /*float: left !important;*/
+
+}
+.bmc-button {
+    padding: 0px 5px 0px 5px !important;
+    line-height: 29px !important;
+    height:29px !important;
+    text-decoration: none !important;
+    display:inline-flex !important;
+    color:#dddddd !important;
+    background-color:#703BC4 !important;
+    border-radius: 8px !important;
+    border: 1px solid transparent !important;
+    font-size: 18px !important;
+    letter-spacing:-0.08px !important;
+    box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;
+    -webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;
+    margin: 1 auto !important;
+    font-family:'Lato', sans-serif !important;
+    -webkit-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+    /*float: left !important;*/
+}
+.bmc-button:hover,
+.bmc-button:active,
+.bmc-button:focus {
+    -webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;
+    text-decoration: none !important;
+    box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;
+    opacity: 0.85 !important;
+    color:#703BC4 !important;
+}
+
+.offcanvas-header{ display:none; }
+
+@media (max-width: 992px) {
+  .offcanvas-header{ display:block; }
+  .navbar-collapse {
+    position: fixed;
+    top:0;
+    bottom: 0;
+    left: 100%;
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    overflow-y: auto;
+    visibility: hidden;
+    background-color: black;
+    transition: visibility .2s ease-in-out, -webkit-transform .2s ease-in-out;
+  }
+  .navbar-collapse.show {
+    visibility: visible;
+    transform: translateX(-100%);
+  }
+}

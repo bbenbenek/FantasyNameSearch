@@ -42,11 +42,6 @@ def generate(search_name):
         yield (name[0].encode('utf-16', 'surrogatepass').decode('utf-16'), index % 3)
         index += 1
 
-@app.route('/test')
-def testPage():
-
-    return render_template("test.html")
-
 @app.route('/')
 def home():
     return render_template('search.html')
@@ -78,7 +73,7 @@ def leaguesearchPage():
 
     pageType = 'about'
 
-    return render_template("base.html", title=title, paragraph=paragraph, pageType=pageType)
+    return render_template("league_search.html", title=title, paragraph=paragraph, pageType=pageType)
 
 @app.route('/top_names')
 def topnamesPage():
@@ -88,7 +83,7 @@ def topnamesPage():
 
     pageType = 'about'
 
-    return render_template("base.html", title=title, paragraph=paragraph, pageType=pageType)
+    return render_template("top_names.html", title=title, paragraph=paragraph, pageType=pageType)
 
 @app.route('/about')
 def aboutPage():
@@ -98,7 +93,7 @@ def aboutPage():
 
     pageType = 'about'
 
-    return render_template("base.html", title=title, paragraph=paragraph, pageType=pageType)
+    return render_template("about.html", title=title, paragraph=paragraph, pageType=pageType)
 
 if __name__== "__main__":
     app.run()
