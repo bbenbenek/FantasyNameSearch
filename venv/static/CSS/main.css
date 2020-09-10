@@ -3,6 +3,10 @@ html {
     font-size: 1rem;
 }
 
+#logo_name a:hover{
+    text-decoration: none !important;
+}
+
 
 @include media-breakpoint-up(sm) {
   html {
