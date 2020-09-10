@@ -21,38 +21,6 @@ html {
     font-size: 1.6rem;
   }
 }
-/*
-
-html {
-    font-size: 100%;
-    box-sizing: border-box;
-}
-*, *:before, *:after {
-    box-sizing: inherit;
-}
-
-.cf:before, .cf:after{
-    content:"";
-    display:table;
-}
-
-.cf:after{
-    clear:both;
-}
-
-.cf{
-    zoom:1;
-      background: #3BC4B4;
-        font-family: Arial, Helvetica, sans-serif;
-        background: -webkit-gradient(linear, left top, left bottom, #3BC4B4, #60cfc2) fixed;
-  margin:0;
-}
-*/
-
-
-body {
-    background-color: #3BC4B4 !important;
-}
 
 
 #topnavbar {
@@ -174,7 +142,6 @@ body {
 
 .offcanvas-header{ display:none; }
 
-/* 992px */
 @media (max-width: 576px) {
   .offcanvas-header{ display:block; }
   .navbar-collapse {

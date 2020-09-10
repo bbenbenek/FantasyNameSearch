@@ -35,7 +35,7 @@ def stream_template(template_name, **context):
     rv.enable_buffering(5)
     return rv
 
-def bad_char_search(strg, search=re.compile(r'[^A-Za-z0-9]').search):
+def bad_char_search(strg, search=re.compile(r'[^A-Za-z0-9 ]{3,20}').search):
     return not bool(search(strg))
 
 def generate(search_name):
@@ -52,10 +52,10 @@ def home():
 @app.route('/search/results', methods=['GET', 'POST'])
 def search_results():
     search_name = ""
-    try:
-        search_name = request.form["input"]
-    except:
+    if request.method == 'GET':
         return redirect("/")
+    else:
+        search_name = request.form["input"]
     device_width = request.form["device_width"] # Sting 'true' = 'Desktop Mode' or 'false' = 'Mobile mode'
     print(device_width)
     print(search_name)

@@ -124,10 +124,10 @@
                          placeholder="Enter fantasy team search terms..."
                          aria-describedby="button-addon1"
                          class="form-control border-0 text-white bg-dark"
-                         oninvalid="this.setCustomValidity('Search terms must include at least 3 alphanumeric characters. No special characters are allowed.')"
+                         oninvalid="this.setCustomValidity('Search terms are limited to 3-20 alphanumeric characters. No special characters are allowed.')"
                          onchange="try{setCustomValidity('')}catch(e){}"
                          oninput="setCustomValidity(' ')"
-                         pattern="[A-Za-z0-9]{3,}"
+                         pattern="[A-Za-z0-9 ]{3,20}"
                          />
                   <input type="hidden" id="device_width_id" name="device_width" value=""/>
                   <script>document.getElementById('device_width_id').value = widthFunction();</script>
