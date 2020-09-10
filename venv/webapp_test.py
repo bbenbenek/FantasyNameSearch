@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, Response, stream_with_context, redirect, url_for
 import re
-
+import os
 import numpy as np
 from flask import Flask, render_template, request, Response, stream_with_context
 from flask_bootstrap import Bootstrap
@@ -13,7 +13,17 @@ from wtforms.validators import InputRequired, Regexp, Length
 app = Flask(__name__)
 
 # Flask-WTF requires an encryption key - the string can be anything
-app.config['SECRET_KEY'] = 'b8EL!Dpw?@zW3U5zebye;e?(Mwn^Jn'
+app.config.update(
+
+    #Set the secret key to a sufficiently random value
+    SECRET_KEY=os.urandom(24),
+
+    #Set the session cookie to be secure
+    SESSION_COOKIE_SECURE=True,
+
+    #Set the session cookie for our app to a unique name
+    SESSION_COOKIE_NAME='YourAppName-WebSession',
+)
 
 # Flask-Bootstrap requires this line
 Bootstrap(app)
