@@ -4,6 +4,8 @@ html {
 }
 
 
+
+
 @include media-breakpoint-up(sm) {
   html {
     font-size: 1.2rem;
@@ -116,7 +118,7 @@ body {
 
 .form-control::placeholder {
   font-size: 0.95rem;
-  color: #aaa;
+  color: #ddd;
   font-style: italic;
 }
 
@@ -131,6 +133,7 @@ body {
   text-align: center;
 }
 
+/* Buy me a Beer button */
 .bmc-button img {
     height: 34px !important;
     width: 35px !important;
@@ -138,7 +141,7 @@ body {
     box-shadow: none !important;
     border: none !important;
     vertical-align: middle !important;
-    /*float: left !important;*/
+    float: left !important;
 
 }
 .bmc-button {
@@ -159,7 +162,7 @@ body {
     font-family:'Lato', sans-serif !important;
     -webkit-box-sizing: border-box !important;
     box-sizing: border-box !important;
-    /*float: left !important;*/
+    float: left !important;
 }
 .bmc-button:hover,
 .bmc-button:active,
@@ -173,7 +176,8 @@ body {
 
 .offcanvas-header{ display:none; }
 
-@media (max-width: 992px) {
+/* 992px */
+@media (max-width: 576px) {
   .offcanvas-header{ display:block; }
   .navbar-collapse {
     position: fixed;
@@ -192,4 +196,36 @@ body {
     visibility: visible;
     transform: translateX(-100%);
   }
+}
+
+/* TABLES ON TOP NAMES */
+.tg  {
+    border-collapse:collapse;
+    border-spacing:0;
+    display: inline-table;}
+.tg td{border-color:black;
+    border-style:solid;
+    border-width:1px;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    overflow:hidden;
+    padding:10px 5px;
+    word-break:normal;}
+.tg th{
+    border-color:black;
+    border-style:solid;
+    border-width:1px;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    font-weight:normal;
+    overflow:hidden;
+    padding:10px 5px;
+    word-break:normal;}
+.tg .tg-rank-year{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-rank-year-header{border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-name-header{border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-name{border-color:inherit;text-align:left;vertical-align:top}
+
+.row-centered {
+    text-align: center;
 }

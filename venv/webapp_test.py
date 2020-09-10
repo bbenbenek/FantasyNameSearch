@@ -35,6 +35,8 @@ def stream_template(template_name, **context):
     rv.enable_buffering(5)
     return rv
 
+def bad_char_search(strg, search=re.compile(r'[^A-Za-z0-9]').search):
+    return not bool(search(strg))
 
 def generate(search_name):
     index = 3 # avoid dividing 1 or 2 by 3 in the next steps. need remainder value to determine column text
@@ -51,10 +53,13 @@ def home():
 def search_results():
     search_name = ""
     search_name = request.form["input"]
+    device_width = request.form["device_width"] # Sting 'true' = 'Desktop Mode' or 'false' = 'Mobile mode'
+    print(device_width)
+    print(search_name)
     messages = ""
     messages = generate(search_name)
 
-    return Response(stream_with_context(stream_template('results.html', messages=messages))) # Stream results instead of pre-loading
+    return Response(stream_with_context(stream_template('results.html', messages=messages, device_width=device_width))) # Stream results instead of pre-loading
 
 
 
@@ -65,7 +70,7 @@ def favicon():
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 """
 
-@app.route('/league_search')
+"""@app.route('/league_search')
 def leaguesearchPage():
 
     title = "League Search"
@@ -74,7 +79,7 @@ def leaguesearchPage():
     pageType = 'about'
 
     return render_template("league_search.html", title=title, paragraph=paragraph, pageType=pageType)
-
+"""
 @app.route('/top_names')
 def topnamesPage():
 

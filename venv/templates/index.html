@@ -1,89 +1,98 @@
-{% extends 'bootstrap/base.html' %}
-{% import "bootstrap/wtf.html" as wtf %}
+// REMOVE MOBILE OR DESKTOP DIVS BASED ON SCREEN SIZE
+    $( document ).ready(function() {
+        if($(window).width()<=500){
+            $("body").removeClass("row_desktop_results");
+            // $('.row_desktop_results').remove();
+            // document.getElementById("#desktop_results").remove();
+        } else {
+            $("body").removeClass("row_mobile_results");
+            // $('.row_mobile_results').remove();
+            // document.getElementById("#mobile_results").remove();
+       }
+    });
 
 
-{% block styles %}
-{{ super() }}
-	<style>
-		body { background: #3BC4B4; }
-	</style>
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='/CSS/bootstrap-4.2.1-dist/css/bootstrap.min.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='/CSS/main.css')}}">
-{% endblock %}
+<!-------------------- MOBILE SEARCH RESULTS -------------------->
 
-
-{% block title %}
-Fantasy Name Search
-{% endblock %}
-
-{% block navbar %}
-<div class="topnav">
-  <a class="active" href="/">Team Search</a>
-  <a href="/league_search">League Search</a>
-  <a href="/top_names">Top Names</a>
-  <a href="/about">About</a>
-</div>
-{% endblock %}
-
-{% block content %}
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
-
-      <h1 class="pt-5 pb-2">Fantasy Football Team Name Search</h1>
-
-      <p class="lead">Search through 500,000+ actual fantasy football team names to find your next team name!<br><br></p>
-
-      {{ wtf.quick_form(form) }}
-
-    </div>
-  </div>
-
-
-    <div class="container-fluid">
-      <div class="row">
-          <div id="column0", class="col-xs-4 col-md-4 col-lg-4 mx-lg-auto mx-md-auto">
-          </div>
-        <div id="column1", class="col-xs-4 col-md-4 col-lg-4 mx-lg-auto mx-md-auto">
-        </div>
-        <div id="column2", class="col-xs-4 col-md-4 col-lg-4 mx-lg-auto mx-md-auto">
-        </div>
-          {% for message, counter in  messages %}
-              {% if counter == 0 %}
-                    <script>
-                    {
-                      var node = document.createElement("P");
-                      var message = "{{ message }}";
-                      node.innerHTML = message;
-                      document.getElementById("column0").appendChild(node);
-                    }
-                    </script>
-              {% elif counter == 1 %}
-                    <script>
-                    {
-                      var node = document.createElement("P");
-                      var message = "{{ message }}";
-                      node.innerHTML = message;
-                      document.getElementById("column1").appendChild(node);
-                    }
-                    </script>
-              {% else %}
-                    <script>
-                    {
-                      var node = document.createElement("P");
-                      var message = "{{ message }}";
-                      node.innerHTML = message;
-                      document.getElementById("column2").appendChild(node);
-                    }
-                    </script>
-              {% endif %}
+            <div class="row_mobile_results" id="mobile_results">
+            <div id="column_mobile" class=" mx-lg-auto mx-md-auto p-0"> <!-- col-xs-3 col-md-3 col-lg-3 -->
+            </div>
+            {% for message, counter in  messages %}
+                <script>
+                {
+                  var node = document.createElement("P");
+                  var message = "{{ message }}";
+                  node.innerHTML = message;
+                  document.getElementById("column_mobile").appendChild(node);
+                }
             {% endfor %}
-      </div>
-    </div>
+                </script>
+            </div>
+
+{% for message, counter in  messages %}
+  {% if counter == 0 %}
+        <script>
+        {
+          var node = document.createElement("P");
+          var message = "{{ message }}";
+          node.innerHTML = message;
+          document.getElementById("column0").appendChild(node);
+        }
+        </script>
+  {% elif counter == 1 %}
+        <script>
+        {
+          var node = document.createElement("P");
+          var message = "{{ message }}";
+          node.innerHTML = message;
+          document.getElementById("column1").appendChild(node);
+        }
+        </script>
+  {% else %}
+        <script>
+        {
+          var node = document.createElement("P");
+          var message = "{{ message }}";
+          node.innerHTML = message;
+          document.getElementById("column2").appendChild(node);
+        }
+        </script>
+  {% endif %}
+{% endfor %}
 
 
-</div>
-
-{% endblock %}
+// Mobile Sized
+            if (size == 2) {
+                var messages = {{messages}};
+                var message:
+                var counter:
+                for (message, counter in messages) {
+                    var node = document.createElement("P");
+                    var message = "{{ message }}";
+                    node.innerHTML = message;
+                    document.getElementById("column_mobile").appendChild(node);
+                }
+            // Desktop Sized
+            } else {
+                var messages = {{messages}};
+                var message:
+                var counter:
+                for (message, counter in messages) {
+                    if (counter == 0) {
+                          var node = document.createElement("P");
+                          var message = "{{ message }}";
+                          node.innerHTML = message;
+                          document.getElementById("column0").appendChild(node);
+                    } else if (counter == 1) {
+                          var node = document.createElement("P");
+                          var message = "{{ message }}";
+                          node.innerHTML = message;
+                          document.getElementById("column1").appendChild(node);
+                    } else {
+                          var node = document.createElement("P");
+                          var message = "{{ message }}";
+                          node.innerHTML = message;
+                          document.getElementById("column2").appendChild(node);
+                    }
+                }
+            }

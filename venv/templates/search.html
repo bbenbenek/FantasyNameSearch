@@ -9,18 +9,27 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
     crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="{{url_for('static', filename='images/favicon.ico')}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='images/apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='images/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='images/favicon-16x16.png')}}">
+    <link rel="manifest" href="{{url_for('static', filename='images/site.webmanifest')}}">
+
+
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/bootstrap-4.2.1-dist/css/bootstrap.min.css')}}"/>
-    <link rel="stylesheet" type="text/javascript" href="{{url_for('static', filename='CSS/bootstrap-4.2.1-dist/js/bootstrap.bundle.min.js')}}"/>
+    <script type = "text/javascript" src="{{url_for('static', filename='CSS/bootstrap-4.2.1-dist/js/bootstrap.bundle.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/font-awesome-4.7.0/css/font-awesome.min.css')}}"/>
 
-    </script>
+
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/main.css')}}" />
 
     <style>
       body {
-        background: -webkit-linear-gradient(to right, #32a89a, #3BC4B4) !important;
-        background: linear-gradient(to right, #32a89a, #3BC4B4) !important;
+        background: #ffffff !important;
       }
+      @font-face {
+        font-family: CollegeVarsity;
+        src: url('static/CSS/fonts/CollegiateheavyoutlineMedium.ttf');}
+      h1 {font-family: CollegeVarsity}
 
     </style>
     <!--------- SCRIPTS ---------->
@@ -49,13 +58,29 @@
             $("body").removeClass("offcanvas-active");
         });
     })
+
+    function widthFunction() {
+      const mq = window.matchMedia( "(min-width: 500px)" );
+      return mq.matches;
+    }
+
+
     </script>
     <!--------- END SCRIPTS ---------->
+
+    <script data-ad-client="ca-pub-2713610432001270" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">FS</a>
+    <h1 class="pb-1 display-4 text-dark d-none d-sm-block"><center>Fantasy Name Search</center></h1>
+    <h1 class="pb-1 text-dark d-block d-sm-none"><center>Fantasy Name Search</center></h1>
+
+
+
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">FNS</a>
       <button class="navbar-toggler" type="button" data-trigger="#main_nav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -66,7 +91,7 @@
         </div>
         <ul class="navbar-nav" id="topnavbar">
           <li class="nav-item active"> <a class="nav-link" href="/">Team Search </a> </li>
-          <li class="nav-item"><a class="nav-link" href="/league_search"> League Search </a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="/league_search"> League Search </a></li> -->
           <li class="nav-item"><a class="nav-link" href="/top_names"> Top Names </a></li>
           <li class="nav-item"><a class="nav-link" href="/about"> About </a></li>
         </ul>
@@ -78,7 +103,7 @@
       <div class="row py-1">
         <div class="mx-lg-auto mx-md-auto mx-xs-auto mx-sm-auto"><!---col-md-10 col-lg-8--->
 
-            <h1 class="pt-5 pb-2 font-size: 4em"><center>Fantasy Football Team Name Search</center></h1>
+            <h2 class="pt-2 pb-2 font-size: 4em"><center>Fantasy Football Team Name Search</center></h2>
 
             <h3 class="lead"><center>Search through 500,000+ actual fantasy football team names to find your next team name!</center><br><br></h3>
         </div>
@@ -88,16 +113,32 @@
       <div class="row mb-5">
         <div class="col-lg-8 mx-auto">
             <!-- Custom rounded search bars with input group -->
-            <form action="/search/results" method="post">
-              <div class="p-2 bg-light rounded rounded-pill shadow-sm mb-4">
+            <form id="search_input_form" action="/search/results" method="post">
+              <div class="p-2 bg-dark rounded rounded-pill shadow-sm mb-4">
                 <div class="input-group">
-                  <input type="text" name="input" placeholder="Enter fantasy team search terms..." aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                  <input type="text"
+                         name="input"
+                         placeholder="Enter fantasy team search terms..."
+                         aria-describedby="button-addon1"
+                         class="form-control border-0 text-white bg-dark"
+                         oninvalid="this.setCustomValidity('Search terms must include at least 3 alphanumeric characters. No special characters are allowed.')"
+                         onchange="try{setCustomValidity('')}catch(e){}"
+                         oninput="setCustomValidity(' ')"
+                         pattern="[A-Za-z0-9]{3,}"
+                         />
+                  <input type="hidden" id="device_width_id" name="device_width" value=""/>
+                  <script>document.getElementById('device_width_id').value = widthFunction();</script>
                   <div class="input-group-append">
-                    <button id="button-addon1" type="submit" class="btn btn-link text-dark"><i class="fa fa-search"></i></button>
+                    <button id="button-addon1" type="submit" class="btn btn-link text-light"><i class="fa fa-search"></i></button>
                   </div>
                 </div>
               </div>
             </form>
+            <script>
+              $(document).ready(function() {
+                $('search_input_form').bootstrapValidator();
+              });
+            </script>
         </div>
       </div>
 
@@ -107,7 +148,7 @@
       <a href="https://www.yahoo.com/?ilc=401" target="_blank">
         <img src="{{url_for('static', filename='images/yahoo_dark_logo.png')}}" align="right" width="134" height="29"/>
       </a>
-      <link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/FantasyNameGuy">🍺<span style="margin-left:5px;font-size:18px !important;">Buy me a Beer</span></a>
+      <link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button ml-2" target="_blank" href="https://www.buymeacoffee.com/FantasyNameGuy">🍺<span style="margin-left:5px;font-size:18px !important;">Buy me a Beer</span></a>
 
     </div>
 
