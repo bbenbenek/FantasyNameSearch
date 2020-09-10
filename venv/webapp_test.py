@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Response, stream_with_context
+from flask import Flask, render_template, request, Response, stream_with_context, redirect, url_for
 import re
 
 import numpy as np
@@ -52,7 +52,10 @@ def home():
 @app.route('/search/results', methods=['GET', 'POST'])
 def search_results():
     search_name = ""
-    search_name = request.form["input"]
+    try:
+        search_name = request.form["input"]
+    except:
+        return redirect("/")
     device_width = request.form["device_width"] # Sting 'true' = 'Desktop Mode' or 'false' = 'Mobile mode'
     print(device_width)
     print(search_name)
