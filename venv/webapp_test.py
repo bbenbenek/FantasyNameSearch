@@ -30,14 +30,6 @@ Bootstrap(app)
 
 YAHOO_TEAMS = np.load("yahoo_team_names.npy").tolist()
 
-class SearchNameForm(FlaskForm):
-    search_name = StringField('Enter team name search term',
-                       validators=[InputRequired(message='Search term required to search!'),
-                                   Regexp('^[a-zA-Z ]+$', message='Invalid character, only letters and numbers are allowed'),
-                                   Length(min=2, max=16, message='Please enter a search term with between 2-16 characters in length')
-                                   ])
-    submit = SubmitField('Search')
-
 def stream_template(template_name, **context):
     app.update_template_context(context)
     t = app.jinja_env.get_template(template_name)
