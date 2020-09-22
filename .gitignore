@@ -1,13 +1,13 @@
 # Project exclude paths
-/venv/bin
-/venv/lib
-/venv/Archive/
-/venv/include
-/venv/static
-/venv/templates
-/venv/*.zip
-/venv/*.npy
-/venv/*.cfg
+/FantasyNameSearch/bin
+/FantasyNameSearch/lib
+/FantasyNameSearch/Archive/
+/FantasyNameSearch/include
+/FantasyNameSearch/static
+/FantasyNameSearch/templates
+/FantasyNameSearch/*.zip
+/FantasyNameSearch/*.npy
+/FantasyNameSearch/*.cfg
 # Elastic Beanstalk Files
 ../.elasticbeanstalk/config.yml
 !.elasticbeanstalk/*.cfg.yml
