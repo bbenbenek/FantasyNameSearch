@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Fantasy Name Search</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="{{url_for('static', filename='images/favicon.ico')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/bootstrap-4.2.1-dist/css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" type="text/javascript" href="{{url_for('static', filename='CSS/bootstrap-4.2.1-dist/js/bootstrap.bundle.min.js')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/font-awesome-4.7.0/css/font-awesome.min.css')}}"/>
+
+    </script>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/main.css')}}" />
+
+    <style>
+      body {
+        background: -webkit-linear-gradient(to right, #32a89a, #3BC4B4) !important;
+        background: linear-gradient(to right, #32a89a, #3BC4B4) !important;
+      }
+
+    </style>
+    <!--------- SCRIPTS ---------->
+    <script type="text/javascript">
+    /// some script
+    $(function () {
+          'use strict'
+
+        $("[data-trigger]").on("click", function(){
+            var trigger_id =  $(this).attr('data-trigger');
+            $(trigger_id).toggleClass("show");
+            $('body').toggleClass("offcanvas-active");
+        });
+
+        // close if press ESC button
+        $(document).on('keydown', function(event) {
+            if(event.keyCode === 27) {
+               $(".navbar-collapse").removeClass("show");
+               $("body").removeClass("overlay-active");
+            }
+        });
+
+        // close button
+        $(".btn-close").click(function(e){
+            $(".navbar-collapse").removeClass("show");
+            $("body").removeClass("offcanvas-active");
+        });
+    })
+    </script>
+    <!--------- END SCRIPTS ---------->
+    <style>
+      body {
+        background: -webkit-linear-gradient(to right, #32a89a, #3BC4B4) !important;
+        background: linear-gradient(to right, #32a89a, #3BC4B4) !important;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="/">FS</a>
+      <button class="navbar-toggler" type="button" data-trigger="#main_nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse" id="main_nav">
+        <div class="offcanvas-header mt-3">
+          <button class="btn btn-outline-light btn-close float-right"> &times Close </button>
+          <h5 class="py-2 text-white">Navigation</h5>
+        </div>
+        <ul class="navbar-nav" id="topnavbar">
+          <li class="nav-item active"> <a class="nav-link" href="/">Team Search </a> </li>
+          <li class="nav-item"><a class="nav-link" href="/league_search"> League Search </a></li>
+          <li class="nav-item"><a class="nav-link" href="/top_names"> Top Names </a></li>
+          <li class="nav-item"><a class="nav-link" href="/about"> About </a></li>
+        </ul>
+      </div> <!-- navbar-collapse.// -->
+    </nav>
+<!--
+    <div id="topnavbar" class="topnav">
+      <a class="active" href="/">Team Search</a>
+      <a href="/league_search">League Search</a>
+      <a href="/top_names">Top Names</a>
+      <a href="/about">About</a>
+    </div>
+-->
+
+
+    <div class="container">
+      <div class="row py-1">
+        <div class="mx-lg-auto mx-md-auto mx-xs-auto mx-sm-auto"><!---col-md-10 col-lg-8--->
+
+            <h1 class="pt-5 pb-2 font-size: 4em"><center>Fantasy Football Team Name Search</center></h1>
+
+            <h3 class="lead"><center>Search through 500,000+ actual fantasy football team names to find your next team name!</center><br><br></h3>
+        </div>
+      </div>
+
+
+      <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <!-- Custom rounded search bars with input group -->
+            <form action="/search/results" method="post">
+              <div class="p-2 bg-light rounded rounded-pill shadow-sm mb-4">
+                <div class="input-group">
+                  <input type="text" name="input" placeholder="Enter fantasy team search terms..." aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                  <div class="input-group-append">
+                    <button id="button-addon1" type="submit" class="btn btn-link text-dark"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+            </form>
+        </div>
+      </div>
+
+    <div class="col-lg-8 mx-auto">
+        <div id="#search_results_pane" class="bg-light rounded shadow">
+            <div class="row" >
+
+            <!-- <div id="columnm_margin1", class="col-xs-1 col-md-1 col-lg-1 mx-lg-auto mx-md-auto">
+            </div> -->
+            <div id="column0" class="col-xs-3 col-md-3 col-lg-3 mx-lg-auto mx-md-auto p-0">
+            </div>
+            <div id="column1" class="col-xs-3 col-md-3 col-lg-3 mx-lg-auto mx-md-auto p-0">
+            </div>
+            <div id="column2" class="col-xs-3 col-md-3 col-lg-3 mx-lg-auto mx-md-auto p-0">
+            </div>
+              {% for message, counter in  messages %}
+                  {% if counter == 0 %}
+                        <script>
+                        {
+                          var node = document.createElement("P");
+                          var message = "{{ message }}";
+                          node.innerHTML = message;
+                          document.getElementById("column0").appendChild(node);
+                        }
+                        </script>
+                  {% elif counter == 1 %}
+                        <script>
+                        {
+                          var node = document.createElement("P");
+                          var message = "{{ message }}";
+                          node.innerHTML = message;
+                          document.getElementById("column1").appendChild(node);
+                        }
+                        </script>
+                  {% else %}
+                        <script>
+                        {
+                          var node = document.createElement("P");
+                          var message = "{{ message }}";
+                          node.innerHTML = message;
+                          document.getElementById("column2").appendChild(node);
+                        }
+                        </script>
+                  {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <div class="footer py-2 bg-dark text-white-50">
+      <a href="https://www.yahoo.com/?ilc=401" target="_blank">
+        <img src="{{url_for('static', filename='images/yahoo_dark_logo.png')}}" align="right" width="134" height="29"/>
+      </a>
+
+        <link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/FantasyNameGuy">🍺<span style="margin-left:5px;font-size:18px !important;">Buy me a Beer</span></a>
+    </div>
+
+  </body>
+</html>

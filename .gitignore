@@ -1,6 +1,7 @@
 # Project exclude paths
 /venv/bin
 /venv/lib
+/venv/Archive
 /venv/include
 /venv/static
 /venv/templates
