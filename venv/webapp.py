@@ -43,7 +43,6 @@ def bad_char_search(strg, search=re.compile(r'[^A-Za-z0-9 ]{3,20}').search):
 
 def generate(search_name):
     index = 3 # avoid dividing 1 or 2 by 3 in the next steps. need remainder value to determine column text
-    #for name in process.extractWithoutOrder(re.escape(search_name), YAHOO_TEAMS, score_cutoff=75):
     for name in rapid_process.iterExtract(re.escape(search_name), YAHOO_TEAMS, score_cutoff=75):
 
         yield (name[0].encode('utf-16', 'surrogatepass').decode('utf-16'), index % 3)
@@ -61,7 +60,7 @@ def search_results():
         return redirect("/")
     else:
         search_name = request.form["input"]
-    device_width = request.form["device_width"] # Sting 'true' = 'Desktop Mode' or 'false' = 'Mobile mode'
+    device_width = request.form["device_width"] # String 'true' = 'Desktop Mode' or 'false' = 'Mobile mode'
     messages = ""
     messages = generate(search_name)
 
