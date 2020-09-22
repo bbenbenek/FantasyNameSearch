@@ -11,3 +11,7 @@
 ../.elasticbeanstalk/config.yml
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+*.ebignore.save
+*.ebignore.save.1
+*.idea
+*.elasticbeanstalk
