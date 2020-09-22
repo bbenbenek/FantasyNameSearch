@@ -2,6 +2,11 @@
 /venv/bin
 /venv/lib
 /venv/include
+/venv/static
+/venv/templates
+/venv/*.zip
+/venv/*.npy
+/venv/*.cfg
 # Elastic Beanstalk Files
 ../.elasticbeanstalk/config.yml
 !.elasticbeanstalk/*.cfg.yml

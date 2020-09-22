@@ -6,9 +6,10 @@ from flask import Flask, render_template, request, Response, stream_with_context
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 # from yahoo_team_names import YAHOO_TEAMS # teams data
-from fuzzywuzzy import process
 from wtforms import StringField, SubmitField
 from wtforms.validators import InputRequired, Regexp, Length
+from rapidfuzz import fuzz as rapid_fuzz
+from rapidfuzz import process as rapid_process
 
 app = Flask(__name__)
 
@@ -42,7 +43,9 @@ def bad_char_search(strg, search=re.compile(r'[^A-Za-z0-9 ]{3,20}').search):
 
 def generate(search_name):
     index = 3 # avoid dividing 1 or 2 by 3 in the next steps. need remainder value to determine column text
-    for name in process.extractWithoutOrder(re.escape(search_name), YAHOO_TEAMS, score_cutoff=75):
+    #for name in process.extractWithoutOrder(re.escape(search_name), YAHOO_TEAMS, score_cutoff=75):
+    for name in rapid_process.iterExtract(re.escape(search_name), YAHOO_TEAMS, score_cutoff=75):
+
         yield (name[0].encode('utf-16', 'surrogatepass').decode('utf-16'), index % 3)
         index += 1
 
@@ -59,21 +62,10 @@ def search_results():
     else:
         search_name = request.form["input"]
     device_width = request.form["device_width"] # Sting 'true' = 'Desktop Mode' or 'false' = 'Mobile mode'
-    print(device_width)
-    print(search_name)
     messages = ""
     messages = generate(search_name)
 
     return Response(stream_with_context(stream_template('results.html', messages=messages, device_width=device_width))) # Stream results instead of pre-loading
-
-
-
-"""
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
-"""
 
 """@app.route('/league_search')
 def leaguesearchPage():
@@ -85,25 +77,14 @@ def leaguesearchPage():
 
     return render_template("league_search.html", title=title, paragraph=paragraph, pageType=pageType)
 """
+
 @app.route('/top_names')
 def topnamesPage():
-
-    title = "Top Names"
-    paragraph = ["Page under construction"]
-
-    pageType = 'about'
-
-    return render_template("top_names.html", title=title, paragraph=paragraph, pageType=pageType)
+    return render_template("top_names.html")
 
 @app.route('/about')
 def aboutPage():
-
-    title = "About this site"
-    paragraph = ["Page under construction"]
-
-    pageType = 'about'
-
-    return render_template("about.html", title=title, paragraph=paragraph, pageType=pageType)
+    return render_template("about.html")
 
 if __name__== "__main__":
     app.run()
