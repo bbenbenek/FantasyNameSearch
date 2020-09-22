@@ -13,5 +13,5 @@
 !.elasticbeanstalk/*.global.yml
 *.ebignore.save
 *.ebignore.save.1
-*.idea
-*.elasticbeanstalk
+/.idea
+/.elasticbeanstalk
